@@ -25,6 +25,9 @@ def main():
     if not line.strip():
         print("invalid: line must not be only whitespace", file=sys.stderr)
         return 1
+    if line[-1] not in ".!?":
+        print("invalid: line must end with sentence punctuation (. ! ?)", file=sys.stderr)
+        return 1
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "entry.txt")
